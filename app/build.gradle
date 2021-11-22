@@ -1,0 +1,124 @@
+plugins {
+  id 'com.android.application'
+  id 'kotlin-android'
+  id 'kotlin-kapt'
+  id 'dagger.hilt.android.plugin'
+  id 'com.google.gms.google-services'
+  id 'com.google.firebase.crashlytics'
+  id 'com.google.firebase.appdistribution'
+}
+
+android {
+  compileSdk 31
+
+  defaultConfig {
+    applicationId "com.example.playground"
+    minSdk 24
+    targetSdk 31
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  signingConfigs {
+    debug {
+      storeFile file("sinatra-debug.keystore.jks")
+      storePassword "sinatra2021"
+      keyAlias "sinatra-debug"
+      keyPassword "sinatra2021"
+    }
+  }
+
+  buildTypes {
+    debug {
+      debuggable true
+      applicationIdSuffix ".debug"
+      buildConfigField "String", "SINATRA_WEB_URL", '"https://www.sinatra.aws.cmclabs.io"'
+      buildConfigField "String", "SINATRA_API_URL", '"https://api.sinatra.aws.cmclabs.io"'
+      signingConfig signingConfigs.debug
+
+      firebaseAppDistribution {
+        appId = "1:1000118097961:android:4fbe947217bead9319a438"
+        artifactType = "APK"
+        groups="sinatra-testers"
+      }
+    }
+    release {
+      minifyEnabled true
+
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+      buildConfigField "String", "SINATRA_WEB_URL", '"https://www.sinatra.aws.cmclabs.io"'
+      buildConfigField "String", "SINATRA_API_URL", '"https://api.sinatra.aws.cmclabs.io"'
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
+  }
+  kotlinOptions {
+    jvmTarget = '11'
+    useIR = true
+  }
+  buildFeatures {
+    compose true
+  }
+  composeOptions {
+    kotlinCompilerExtensionVersion compose_version
+  }
+  packagingOptions {
+    resources {
+      excludes += '/META-INF/{AL2.0,LGPL2.1}'
+    }
+  }
+  buildFeatures {
+    viewBinding true
+  }
+}
+
+dependencies {
+  testImplementation 'junit:junit:4.13.2'
+  testImplementation "io.mockk:mockk:$mockk_version"
+  testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
+
+  androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+  androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+  androidTestImplementation "androidx.compose.ui:ui-test:$compose_version"
+
+  implementation platform("com.google.firebase:firebase-bom:$firebase_version")
+  implementation 'com.google.firebase:firebase-crashlytics'
+  implementation 'com.google.firebase:firebase-analytics'
+
+  debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+
+  implementation "androidx.compose.ui:ui-tooling:$compose_version"
+  implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+
+  implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+  implementation 'androidx.core:core-ktx:1.7.0'
+  implementation 'androidx.appcompat:appcompat:1.4.0'
+  implementation 'com.google.android.material:material:1.4.0'
+  implementation "androidx.compose.ui:ui:$compose_version"
+  implementation "androidx.compose.material:material:$compose_version"
+  implementation 'androidx.navigation:navigation-compose:2.4.0-beta02'
+  implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-beta01'
+  implementation 'androidx.viewpager2:viewpager2:1.0.0'
+  implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+  kapt "com.google.dagger:hilt-compiler:$hilt_version"
+  implementation "com.google.dagger:hilt-android:$hilt_version"
+
+  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+  implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+  implementation "com.squareup.moshi:moshi:$moshi_version"
+  implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+  implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_logger_version"
+
+  implementation("ru.gildor.coroutines:kotlin-coroutines-okhttp:1.0")
+
+  implementation("io.coil-kt:coil:$coil_version")
+  implementation("io.coil-kt:coil-compose:$coil_version")
+}

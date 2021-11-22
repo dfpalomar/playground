@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
         Surface(color = MaterialTheme.colors.background) {
           Column {
             Greeting("Android")
-            Text(text = "Version = " + versionNumber(context))
+            Text(text = "Version: " + versionNumber(context))
           }
         }
       }

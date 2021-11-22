@@ -39,7 +39,6 @@ android {
       signingConfig signingConfigs.debug
 
       firebaseAppDistribution {
-        appId = "1:1000118097961:android:4fbe947217bead9319a438"
         artifactType = "APK"
         groups="sinatra-testers"
       }

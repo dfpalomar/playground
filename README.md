@@ -1,2 +1,2 @@
 # playground
-Playground for github actions
+Playground for github actions.

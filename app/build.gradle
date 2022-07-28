@@ -17,6 +17,7 @@ android {
     targetSdk 31
     versionCode version_code.toInteger()
     versionName version_name
+    setProperty("archivesBaseName", "MyAwesomeApp" + versionName)
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -40,7 +41,7 @@ android {
 
       firebaseAppDistribution {
         artifactType = "APK"
-        groups="testers"
+        groups = "testers"
       }
     }
     release {

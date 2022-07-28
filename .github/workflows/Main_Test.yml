@@ -1,4 +1,4 @@
-name: Pull Request
+name: Tests with main
 
 on:
   workflow_dispatch:
@@ -25,11 +25,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps: 
+    steps:
 
       - name: Checkout the code
         uses: actions/checkout@v2
-      
+
       - name: set up JDK 11
         uses: actions/setup-java@v2
         with:
@@ -54,9 +54,9 @@ jobs:
           property: 'version_code'
 
 
-#      - name: Extract branch name
-#        run: |
-#          echo "The branch name is ${GITHUB_REF##*/}"
+      #      - name: Extract branch name
+      #        run: |
+      #          echo "The branch name is ${GITHUB_REF##*/}"
 
 
       # This is required for tagging

@@ -7,10 +7,10 @@ on:
         type: choice
         description: Deploy To Google Play?
         required: true
-        default: 'NO'
+        default: 'NOLAS'
         options:
-          - YES
-          - NO
+          - SISAS
+          - NOLAS
       message:
         description: Release Notes
         required: true

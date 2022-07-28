@@ -7,10 +7,10 @@ on:
         type: choice
         required: true
         description: Deploy To Google Play (Closed testing)?
-        default: "def"
+        default: "NO"
         options:
-          - "abc"
-          - "def"
+          - "YES"
+          - "NO"
       message:
         type: string
         required: true
@@ -47,7 +47,8 @@ jobs:
 
 
       - name: Deploy to Google Play
-        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'def')
+#        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'YES')
+        if: contains('YES', 'NO')
         run: |
            echo "Deploy to Google Play"
 

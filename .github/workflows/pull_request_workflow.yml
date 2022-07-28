@@ -38,8 +38,30 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Send greeting
+      - name: Use inputs
         run: echo "Message - ${{ github.event.inputs.message }}, Deploy to Google Play - ${{ github.event.inputs.deploy_to_google_play }}, Use emoji - ${{ github.event.inputs.use-emoji }}"
+
+
+      - name: Read version name
+        id: read_version_name
+        uses: christian-draeger/read-properties@1.0.1
+        with:
+          path: './gradle.properties'
+          property: 'version_name'
+      - name: Read version code
+        id: read_version_code
+        uses: christian-draeger/read-properties@1.0.1
+        with:
+          path: './gradle.properties'
+          property: 'version_code'
+
+
+      - name: Tag Release
+        run: |
+          tag_name = ${{ steps.read_version_name.outputs.value }}
+          echo "Tagging release with tag $tag_name"
+          git tag -a $tag_name -m "Release $tag_name"
+          git push origin --tags
 
 #      - name: Clean project
 #        run: ./gradlew clean

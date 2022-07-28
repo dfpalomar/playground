@@ -56,6 +56,11 @@ jobs:
           property: 'version_code'
 
 
+      - name: Setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "{--}"
+
       - name: Tag Release
         run: |
           tag_name=${{ steps.read_version_name.outputs.value }}

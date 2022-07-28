@@ -46,16 +46,27 @@ jobs:
           echo "The branch name is $branch_name and the deploy flag is ${{ github.event.inputs.deploy_to_google_play }}"
 
 
-      - name: set env variable
-        run: |
-          echo "BRANCH_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+#      - name: Set branch name ENV variable
+#        run: |
+#          echo "BRANCH_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+#
+#      - name: Abort if branch is not a release
+#        if: contains(env.BRANCH_NAME, 'release/') == false
+#        run: |
+#           echo '${{ env.BRANCH_NAME }} is not a release branch! Release branch name must start with release/ '
+#           exit 1
 
-      - name: Abort if branch is not a release
-#        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'YES') // Esto deberia funcionar SI O SI
-        if: contains(env.BRANCH_NAME, 'release/') == false
+
+
+
+      - name: Set deploy to google play ENV variable
         run: |
-           echo '${{ env.BRANCH_NAME }} is not a release branch! Release branch name must start with release/ '
-           exit 1
+          echo "DEPLOY_TO_GOOGLE_PLAY=${{ github.event.inputs.deploy_to_google_play }}" >> $GITHUB_ENV
+
+      - name: Deploy to Google Play Closed Testing track
+        if: contains(env.DEPLOY_TO_GOOGLE_PLAY, 'YES')
+        run: |
+          echo 'Deploy to Google Play perrito'
 
 
       - name: Just comment

@@ -66,6 +66,11 @@ jobs:
 #          exit 1
 
 #        if: ${{ github.event.inputs.deploy_to_google_play }} == 'YES'
+
+      - name: Print branch name
+        run: |
+          echo "Branch ${GITHUB_REF_NAME}"
+
       - name: Abort if branch is not a release
         if: ${{ contains('${GITHUB_REF_NAME}', 'release/') == false }}
         run: |

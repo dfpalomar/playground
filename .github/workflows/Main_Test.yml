@@ -59,11 +59,16 @@ jobs:
           branch_name=${GITHUB_REF_NAME}
           echo "The branch name is $branch_name"
 
-      - name: Check if release branch
-        if: contains("${GITHUB_REF_NAME}", "release/") == false
+#      - name: Check if release branch
+#        if: contains("${GITHUB_REF_NAME}", "release/") == false
+#        run: |
+#          echo "Not a release branch"
+#          exit 1
+
+      - name: Run only if required
+        if: ${{ github.event.inputs.deploy_to_google_play }} == "YES"
         run: |
-          echo "Not a release branch"
-          exit 1
+          echo "Deploy to Google Play"
 
 
       # This is required for tagging

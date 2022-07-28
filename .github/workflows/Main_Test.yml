@@ -65,8 +65,8 @@ jobs:
 #          echo "Not a release branch"
 #          exit 1
 
-      - name: Run only if required
 #        if: ${{ github.event.inputs.deploy_to_google_play }} == 'YES'
+      - name: Run only if required
         if: 'Diego' == 'Diego'
         run: |
           echo "Fucking deploy to Google Play: ${{ github.event.inputs.deploy_to_google_play }}"

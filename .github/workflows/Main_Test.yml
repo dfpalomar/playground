@@ -43,7 +43,7 @@ jobs:
       - name: Extract branch name
         run: |
           branch_name=${GITHUB_REF_NAME}
-          echo "The branch name is $branch_name"
+          echo "The branch name is $branch_name and the deploy flag is $github.event.inputs.deploy_to_google_play"
 
 
       - name: Deploy to Google Play

@@ -54,7 +54,7 @@ jobs:
 #        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'YES') // Esto deberia funcionar SI O SI
         if: contains(env.BRANCH_NAME, 'release/') == false
         run: |
-           echo 'Not a release branch!'
+           echo '${{ env.BRANCH_NAME }} is not a release branch! Release branch name must start with release/ '
            exit 1
 
 

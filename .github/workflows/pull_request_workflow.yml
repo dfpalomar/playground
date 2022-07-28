@@ -20,10 +20,6 @@ on:
         required: false
         description: Include  emojis
 
-  pull_request:
-    branches:
-      - 'develop'
-
 jobs:
   build:
 
@@ -58,10 +54,9 @@ jobs:
           property: 'version_code'
 
 
-      - name: Extract branch name
-        run: |
-#          branch_name =
-          echo "The branch name is ${GITHUB_REF##*/}"
+#      - name: Extract branch name
+#        run: |
+#          echo "The branch name is ${GITHUB_REF##*/}"
 
 
       # This is required for tagging

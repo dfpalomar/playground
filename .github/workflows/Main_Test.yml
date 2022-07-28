@@ -47,8 +47,7 @@ jobs:
 
 
       - name: Deploy to Google Play
-#        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'YES')
-        if: contains('YES', 'YES')
+        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'YES')
         run: |
            echo "Deploy to Google Play 2"
 

@@ -50,11 +50,11 @@ jobs:
         run: |
           echo "BRANCH_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
 
-      - name: Deploy to Google Play
+      - name: Abort if branch is not a release
 #        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'YES') // Esto deberia funcionar SI O SI
-        if: contains(env.BRANCH_NAME, 'main')
+        if: contains(env.BRANCH_NAME, 'release/') == false
         run: |
-           echo "Deploy to Google Play"
+           echo 'Not a release branch!'
 
 
       - name: Just comment

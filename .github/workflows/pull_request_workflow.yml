@@ -20,9 +20,9 @@ on:
         required: false
         description: Include  emojis
 
-  pull_request:
-    branches:
-      - 'develop'
+#  pull_request:
+#    branches:
+#      - 'develop'
 
 jobs:
   build:

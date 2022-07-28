@@ -75,7 +75,7 @@ jobs:
 #        if: startsWith('${GITHUB_REF_NAME}', 'release/') == false Fallo
 #        if: ${{ startsWith('${GITHUB_REF_NAME}', 'release/') }} == false
 #        if: startsWith('${GITHUB_REF_NAME}', 'release')
-        if: ${{ 'Diego' == 'Daniel' }}
+        if: ${{ 'Diego' == 'Diego' }}
         run: |
            echo "Si empieza con release name"
 #          echo "Not a release branch"

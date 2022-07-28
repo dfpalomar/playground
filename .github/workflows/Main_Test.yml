@@ -74,7 +74,7 @@ jobs:
       - name: Abort if branch is not a release
 #        if: startsWith('${GITHUB_REF_NAME}', 'release/') == false
 #        if: ${{ startsWith('${GITHUB_REF_NAME}', 'release/') }} == false
-        if: ${{ startsWith('${GITHUB_REF_NAME}', 'release/') == false }}
+        if: startsWith('${GITHUB_REF_NAME}', 'release/') == false
         run: |
           echo "Not a release branch"
           exit 1

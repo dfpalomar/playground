@@ -7,18 +7,14 @@ on:
         type: choice
         required: true
         description: Deploy To Google Play (Closed testing)?
-        default: "NO"
+        default: "YES"
         options:
           - "YES"
           - "NO"
-      message:
+      release_notes:
         type: string
         required: true
         description: Release Notes
-      use-emoji:
-        type: boolean
-        required: false
-        description: Include  emojis
 
 jobs:
   build:
@@ -36,47 +32,31 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Use inputs
-        run: echo "Message - ${{ github.event.inputs.message }}, Deploy to Google Play - ${{ github.event.inputs.deploy_to_google_play }}, Use emoji - ${{ github.event.inputs.use-emoji }}"
-
-
-      - name: Extract branch name
+      - name: Set ENV variables for conditional statements
         run: |
-          branch_name=${GITHUB_REF_NAME}
-          echo "The branch name is $branch_name and the deploy flag is ${{ github.event.inputs.deploy_to_google_play }}"
-
-
-#      - name: Set branch name ENV variable
-#        run: |
-#          echo "BRANCH_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
-#
-#      - name: Abort if branch is not a release
-#        if: contains(env.BRANCH_NAME, 'release/') == false
-#        run: |
-#           echo '${{ env.BRANCH_NAME }} is not a release branch! Release branch name must start with release/ '
-#           exit 1
-
-
-
-
-      - name: Set deploy to google play ENV variable
-        run: |
+          echo "BRANCH_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
           echo "DEPLOY_TO_GOOGLE_PLAY=${{ github.event.inputs.deploy_to_google_play }}" >> $GITHUB_ENV
 
-      - name: Deploy to Google Play Closed Testing track
-        if: contains(env.DEPLOY_TO_GOOGLE_PLAY, 'YES')
+      - name: Abort if branch is not a release
+        if: contains(env.BRANCH_NAME, 'release/') == false
         run: |
-          echo 'Deploy to Google Play perrito'
+          echo '${{ env.BRANCH_NAME }} is not a release branch! Release branch name must start with release/ '
+          exit 1
 
+      - name: Use inputs
+        run: echo "Release notes - ${{ github.event.inputs.release_notes }}, Deploy to Google Play - ${{ github.event.inputs.deploy_to_google_play }}"
 
-      - name: Just comment
+      - name: Build the project
         run: |
-          echo "Siguiente paso"
-
-
+          echo "Build the project"
 
 #      - name: Clean project
 #        run: ./gradlew clean
 #
 #      - name: Assemble
 #        run: ./gradlew assembleDebug
+
+      - name: Deploy to Google Play Closed Testing track
+        if: contains(env.DEPLOY_TO_GOOGLE_PLAY, 'YES')
+        run: |
+          echo 'Deploy to Google Play perrito'

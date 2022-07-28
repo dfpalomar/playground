@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         // A surface container using the 'background' color from the theme
         Surface(color = MaterialTheme.colors.background) {
           Column {
-            Text(text = "Version code: " + BuildConfig.VERSION_CODE)
+            Text(text = "Version code:  " + BuildConfig.VERSION_CODE)
             Text(text = "Version name: " + BuildConfig.VERSION_NAME)
           }
         }

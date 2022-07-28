@@ -66,9 +66,10 @@ jobs:
 #          exit 1
 
       - name: Run only if required
-        if: ${{ github.event.inputs.deploy_to_google_play }} == 'YES'
+#        if: ${{ github.event.inputs.deploy_to_google_play }} == 'YES'
+        if: 'Diego' == 'Diego'
         run: |
-          echo "Deploy to Google Play: ${{ github.event.inputs.deploy_to_google_play }}"
+          echo "Fucking deploy to Google Play: ${{ github.event.inputs.deploy_to_google_play }}"
 
 
       # This is required for tagging

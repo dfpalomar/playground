@@ -39,7 +39,7 @@ jobs:
           java-version: '11'
 
       - name: Send greeting
-        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", ""]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.deploy_to_google_play }}"
+        run: echo "Message - ${{ github.event.inputs.message }}, Deploy to Google Play - ${{ github.event.inputs.deploy_to_google_play }}, Use emoji - ${{ github.event.inputs.use-emoji }}"
 
 #      - name: Clean project
 #        run: ./gradlew clean

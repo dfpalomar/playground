@@ -46,6 +46,7 @@ jobs:
       - name: Use inputs
         run: echo "Release notes - ${{ github.event.inputs.release_notes }}, Deploy to Google Play - ${{ github.event.inputs.deploy_to_google_play }}"
 
+      # Comment out if don't want to simulate
       - name: Build the project
         run: |
           echo "Build the project"
@@ -80,7 +81,7 @@ jobs:
         id: uploadArtifact
         uses: actions/upload-artifact@v1
         with:
-          name: SinatraReleaseBundle
+          name: 'Release-${{ steps.read_version_name.outputs.value }}'
           path: app/build/outputs/apk/debug/app-debug.apk
 
 

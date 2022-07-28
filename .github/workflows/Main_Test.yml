@@ -55,6 +55,7 @@ jobs:
         if: contains(env.BRANCH_NAME, 'release/') == false
         run: |
            echo 'Not a release branch!'
+           exit 1
 
 
       - name: Just comment

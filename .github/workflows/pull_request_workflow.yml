@@ -5,9 +5,9 @@ on:
     inputs:
       deploy_to_google_play:
         type: choice
-        description: Deploy To Google Play (Closed Testing)?
+        description: Deploy To Google Play (Closed testing)?
         required: true
-        default: "YES"
+        default: "NO"
         options:
           - "YES"
           - "NO"

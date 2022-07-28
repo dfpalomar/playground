@@ -5,12 +5,12 @@ on:
     inputs:
       deploy_to_google_play:
         type: choice
-        description: Deploy To Google Play?
+        description: Deploy To Google Play (Closed Testing)?
         required: true
-        default: 'NOLAS'
+        default: "YES"
         options:
-          - SISAS
-          - NOLAS
+          - "YES"
+          - "NO"
       message:
         description: Release Notes
         required: true

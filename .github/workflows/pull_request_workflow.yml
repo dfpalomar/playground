@@ -64,7 +64,7 @@ jobs:
       - name: Tag Release
         run: |
           tag_name=${{ steps.read_version_name.outputs.value }}
-          echo "Tagging release with tag $tag_name"
+          echo "Bot tagging release with tag $tag_name"
           git tag -a $tag_name -m "Release $tag_name"
           git push origin --tags
 

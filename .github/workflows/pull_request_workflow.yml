@@ -3,7 +3,7 @@ name: Pull Request
 on:
   workflow_dispatch:
     inputs:
-      name:
+      deploy_to_google_play:
         type: choice
         description: Deploy To Google Play?
         required: true
@@ -39,7 +39,7 @@ jobs:
           java-version: '11'
 
       - name: Send greeting
-        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", ""]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", ""]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.deploy_to_google_play }}"
 
 #      - name: Clean project
 #        run: ./gradlew clean

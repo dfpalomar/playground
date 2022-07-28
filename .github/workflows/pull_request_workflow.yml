@@ -60,7 +60,7 @@ jobs:
 
       - name: Extract branch name
         run: |
-          branch_name = ${GITHUB_REF##*/}
+          branch_name = ${{ GITHUB_REF##*/ }}
           echo "The branch name is $branch_name"
 
 

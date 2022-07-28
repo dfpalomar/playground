@@ -67,7 +67,7 @@ jobs:
 
 #        if: ${{ github.event.inputs.deploy_to_google_play }} == 'YES'
       - name: Run only if required
-        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'sfsdfdfsdf')
+        if: ${{ 'Diego' == 'Daniel' }}
         run: |
           echo "Fucking bitch deploy to Google Play: ${{ github.event.inputs.deploy_to_google_play }}"
 

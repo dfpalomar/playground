@@ -60,17 +60,22 @@ jobs:
           echo "The branch name is $branch_name"
 
 #      - name: Check if release branch
-#        if: contains("${GITHUB_REF_NAME}", "release/") == false
+#        if:
 #        run: |
 #          echo "Not a release branch"
 #          exit 1
 
 #        if: ${{ github.event.inputs.deploy_to_google_play }} == 'YES'
-      - name: Run only if required
-        if: ${{ 'Diego' == 'Daniel' }}
+      - name: Abort if branch is not a release
+        if: ${{ contains('${GITHUB_REF_NAME}', 'release/') == false }}
         run: |
-          echo "Fucking bitch deploy to Google Play: ${{ github.event.inputs.deploy_to_google_play }}"
+          echo "Not a release branch"
+          exit 1
 
+
+      - name: Just comment
+        run: |
+          echo "Siguiente paso"
 
       # This is required for tagging
 #      - name: Setup git config

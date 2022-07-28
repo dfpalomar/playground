@@ -5,16 +5,16 @@ on:
     inputs:
       deploy_to_google_play:
         type: choice
-        description: Deploy To Google Play (Closed testing)?
         required: true
+        description: Deploy To Google Play (Closed testing)?
         default: "NO"
         options:
           - "YES"
           - "NO"
       message:
-        description: Release Notes
-        required: true
         type: string
+        required: true
+        description: Release Notes
       use-emoji:
         type: boolean
         required: false
@@ -57,6 +57,14 @@ jobs:
           path: './gradle.properties'
           property: 'version_code'
 
+
+      - name: Extract branch name
+        id: extract_branch
+        run: |
+          branch_name = ${GITHUB_REF#refs/heads/}
+          echo "The branch name is $branch_name"
+
+
       # This is required for tagging
       - name: Setup git config
         run: |
@@ -69,6 +77,11 @@ jobs:
           echo "Bot tagging release with tag $tag_name"
           git tag -a $tag_name -m "Release $tag_name"
           git push origin --tags
+
+
+
+
+
 
 #      - name: Clean project
 #        run: ./gradlew clean

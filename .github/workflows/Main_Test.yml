@@ -46,9 +46,13 @@ jobs:
           echo "The branch name is $branch_name and the deploy flag is ${{ github.event.inputs.deploy_to_google_play }}"
 
 
+#      - name: set env variable
+#        run: |
+#          echo "PROJECT_TO_TEST=$(sh scripts/test.sh)" >> $GITHUB_ENV
+
       - name: Deploy to Google Play
 #        if: contains('${{ github.event.inputs.deploy_to_google_play }}', 'YES') // Esto deberia funcionar SI O SI
-        if: contains('${GITHUB_REF_NAME}', 'main')
+        if: contains(${GITHUB_REF_NAME}, 'main')
         run: |
            echo "Deploy to Google Play"
 

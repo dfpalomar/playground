@@ -50,11 +50,11 @@ jobs:
         run: |
           echo "Build the project"
 
-#      - name: Clean project
-#        run: ./gradlew clean
-#
-#      - name: Assemble
-#        run: ./gradlew assembleDebug
+      - name: Clean project
+        run: ./gradlew clean
+
+      - name: Assemble
+        run: ./gradlew assembleDebug
 
       - name: Read release version code from gradle.properties
         id: read_version_code
@@ -74,6 +74,14 @@ jobs:
         run: |
           echo "Version code is ${{ steps.read_version_code.outputs.value }}"
           echo "Version name is ${{ steps.read_version_name.outputs.value }}"
+
+
+      - name: Upload release artifact to Github
+        id: uploadArtifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: SinatraReleaseBundle
+          path: app/build/outputs/apk/debug/app-debug.apk
 
 
       - name: Deploy to Google Play Closed Testing track

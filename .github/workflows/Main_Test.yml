@@ -6,7 +6,7 @@ on:
       deploy_to_google_play:
         type: choice
         required: true
-        description: Deploy To Google Play (Closed testing)?
+        description: Deploy to Google Play (Closed testing)?
         default: "YES"
         options:
           - "YES"
@@ -56,7 +56,27 @@ jobs:
 #      - name: Assemble
 #        run: ./gradlew assembleDebug
 
+      - name: Read release version code from gradle.properties
+        id: read_version_code
+        uses: christian-draeger/read-properties@1.0.1
+        with:
+          path: './gradle.properties'
+          property: 'version_code'
+
+      - name: Read release version name from gradle.properties
+        id: read_version_name
+        uses: christian-draeger/read-properties@1.0.1
+        with:
+          path: './gradle.properties'
+          property: 'version_name'
+
+      - name: Print version code and name
+        run: |
+          echo "Version code is ${{ steps.read_version_code.outputs.value }}"
+          echo "Version name is ${{ steps.read_version_name.outputs.value }}"
+
+
       - name: Deploy to Google Play Closed Testing track
         if: contains(env.DEPLOY_TO_GOOGLE_PLAY, 'YES')
         run: |
-          echo 'Deploy to Google Play perrito'
+          echo 'Deploy to Google Play'

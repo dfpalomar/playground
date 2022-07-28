@@ -60,7 +60,7 @@ jobs:
           echo "The branch name is $branch_name"
 
       - name: Check if release branch
-        if: ${{GITHUB_REF_NAME}} != "release/1.0.0"
+        if: "2" != "release/1.0.0"
         run: |
           echo "Not a release branch"
           exit 1

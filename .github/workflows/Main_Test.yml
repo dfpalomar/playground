@@ -60,7 +60,7 @@ jobs:
           echo "The branch name is $branch_name"
 
       - name: Check if release branch
-        if: contains('${GITHUB_REF_NAME}', 'release/') == false
+        if: contains("${GITHUB_REF_NAME}", "release/") == false
         run: |
           echo "Not a release branch"
           exit 1

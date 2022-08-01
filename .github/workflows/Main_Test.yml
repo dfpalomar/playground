@@ -41,7 +41,7 @@ jobs:
       - name: Create and read file
         run: |
           echo "Location:"
-          echo ls -la
+          ls -la
           mkdir ./distribution/whatsnew
           echo "The release notes of this version" > ./distribution/whatsnew/whatsnew-en-US
           echo "Now print"

@@ -40,10 +40,12 @@ jobs:
 
       - name: Create and read file
         run: |
-          mkdir distribution/whatsnew
-          echo "The release notes of this version" > distribution/whatsnew/whatsnew-en-US
+          echo "Location:"
+          echo ls -la
+          mkdir ./distribution/whatsnew
+          echo "The release notes of this version" > ./distribution/whatsnew/whatsnew-en-US
           echo "Now print"
-          cat distribution/whatsnew/whatsnew-en-US
+          cat ./distribution/whatsnew/whatsnew-en-US
           echo "Donce"
 
 #      - name: Set ENV variables for conditional statements
